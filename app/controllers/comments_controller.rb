@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
       @product = @comment.product
 
       @comment.destroy
-      redirect_to products_path
+      redirect_to product_path(@product)
     end
 
   private
