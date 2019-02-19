@@ -1,5 +1,6 @@
 <% if @product.comments.present? %>
 
+<h4><%= @product.name %></h4>
 <table>
     <tr>
        <th>Id</th>
@@ -10,6 +11,13 @@
     <tr>
       <td><%= comment.id %></td>
         <td><%= comment.comment %></td>
+      <% if user_signed_in? %>
+        <td><%= link_to 'Comment', new_product_comment_path(@product, comment)  %></td>
+        <td><%= link_to 'Edit', edit_product_comment_path(@product, comment) %></td>
+        <td><%= link_to 'Delete', product_comment_path(@product, comment),
+          method: :delete,
+          data: { confirm: "are yuh sure yuh want to delete ?"} %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>

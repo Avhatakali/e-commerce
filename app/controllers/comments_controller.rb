@@ -1,9 +1,14 @@
 class CommentsController < ApplicationController
 
     def new
-        @user = current_user
-        @product = Product.find(params[:product_id])
-        @comment = @product.comments.new
+      @user = current_user
+      @product = Product.find(params[:product_id])
+      @comment = @product.comments.new
+    end
+
+    def edit
+      @comment = Comment.find(params[:id])
+      @product = @comment.product
     end
 
     def create
@@ -15,6 +20,25 @@ class CommentsController < ApplicationController
       else
         render 'new'
       end
+    end
+
+    def update
+      @comment = Comment.find(params[:id])
+      @product = @comment.product
+
+      if @comment.update(comment_params)
+        redirect_to products_path(@product)
+      else
+        render 'edit'
+      end
+    end
+
+    def destroy
+      @comment = Comment.find(params[:id])
+      @product = @comment.product
+
+      @comment.destroy
+      redirect_to products_path
     end
 
   private
