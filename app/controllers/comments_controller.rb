@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
     end
 
     def create
-      @product = Product.find(params[:product_id])
-      @comment = @product.comments.create(comment_params)
+      @user = current_user
+      @comment = @user.comments.create(comment_params)
 
       if @comment.save
         redirect_to products_path(@product)
@@ -19,6 +19,8 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:comment)
+      params.require(:comment)
+            .permit(:comment, :user_id)
+            .merge(product_id: params[:product_id])
     end
 end
