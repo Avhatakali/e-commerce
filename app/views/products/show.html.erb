@@ -1,0 +1,13 @@
+<table>
+    <tr>
+       <th>Id</th>
+       <th>Comments</th>
+    </tr>
+
+  <% @product.comments.each do |comment|%>
+    <tr>
+      <td><%= comment.id %></td>
+        <td><%= comment.comment %></td>
+    </tr>
+  <% end %>
+</table>

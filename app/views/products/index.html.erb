@@ -1,0 +1,34 @@
+<% if user_signed_in? %>
+  <%= link_to 'Add', new_product_path %>
+<% end %>
+
+<% if @product.present? %>
+  <h3>products lists</h3>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td><%= product.quantity %></td>
+
+        <% if user_signed_in? %>
+          <td><%= link_to 'Add', new_product_path(product) %></td>
+        <% end %>
+
+        <td><%= link_to 'Show', product_path(product) %></td>
+
+        <% if user_signed_in? %>
+          <td><%= link_to 'Comment', new_product_comment_path(product)  %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
