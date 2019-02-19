@@ -1,4 +1,9 @@
 <%= form_with(model:[@product, @product.comments.build], local: true) do |form|%>
+
+  <p>
+    <%= form.collection_select :user_id, User.order(:first_name),:id,:first_name %>
+ </p>
+
   <p>
     <%= form.label :comment %> <br>
     <%= form.text_field :comment %>

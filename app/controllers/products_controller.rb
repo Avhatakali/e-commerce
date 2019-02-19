@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
     def new
       @user = current_user
-    #  @user = User.find(params[:user_id])
+      @product = Product.new
     end
 
     def edit
@@ -20,14 +20,14 @@ class ProductsController < ApplicationController
     def create
       @user = current_user
       @product = @user.products.create(product_params)
+      #@product = Product.create(product_params)
 
       if @product.save
-        redirect_to user_products_path(@product)
+        redirect_to products_path(@product)
       else
         render 'new'
       end
     end
-
 
   private
     def product_params

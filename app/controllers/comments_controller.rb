@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
+
     def new
+        @user = current_user
         @product = Product.find(params[:product_id])
+        @comment = @product.comments.new
     end
 
     def create
