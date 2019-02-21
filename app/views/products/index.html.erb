@@ -13,25 +13,25 @@
     </tr>
 
     <% @products.each do |product| %>
-      <tr>
-        <td><%= product.id %></td>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.quantity %></td>
+    <tr>
+      <td><%= product.id %></td>
+      <td><%= product.name %></td>
+      <td><%= product.price %></td>
+      <td><%= product.quantity %></td>
 
-        <% if user_signed_in? %>
-          <td><%= link_to 'Add', new_product_path(product) %></td>
-        <% end %>
+      <% if user_signed_in? %>
+        <td><%= link_to 'Add', new_product_path(product) %></td>
+      <% end %>
 
-        <td><%= link_to 'Show', product_path(product) %></td>
+      <td><%= link_to 'Show', product_path(product) %></td>
 
-        <% if user_signed_in? %>
-          <td><%= link_to 'Edit', edit_product_path(product)  %></td>
-          <td><%= link_to 'Comment', new_product_comment_path(product)  %></td>
-          <td><%= link_to 'Delete', product_path(product),
-            method: :delete, data: {confirm: "do yuh really want to delete product ?"}  %></td>
-        <% end %>
-      </tr>
+      <% if user_signed_in? %>
+        <td><%= link_to 'Edit', edit_product_path(product)  %></td>
+        <td><%= link_to 'Comment', new_product_comment_path(product)  %></td>
+        <td><%= link_to 'Delete', product_path(product),
+          method: :delete, data: {confirm: "do yuh really want to delete product ?"}  %></td>
+      <% end %>
+    </tr>
     <% end %>
   </table>
 <% end %>

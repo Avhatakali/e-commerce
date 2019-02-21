@@ -1,16 +1,15 @@
 <% if @product.comments.present? %>
-
-<h4><%= @product.name %></h4>
-<table>
+  <h4><%= @product.name %></h4>
+  <table>
     <tr>
-       <th>Id</th>
-       <th>Comments</th>
+      <th>Id</th>
+      <th>Comments</th>
     </tr>
 
-  <% @product.comments.each do |comment|%>
+    <% @product.comments.each do |comment|%>
     <tr>
       <td><%= comment.id %></td>
-        <td><%= comment.comment %></td>
+      <td><%= comment.comment %></td>
       <% if user_signed_in? %>
         <td><%= link_to 'Comment', new_product_comment_path(@product, comment)  %></td>
         <td><%= link_to 'Edit', edit_product_comment_path(@product, comment) %></td>
@@ -19,10 +18,9 @@
           data: { confirm: "are yuh sure yuh want to delete ?"} %></td>
       <% end %>
     </tr>
-  <% end %>
-</table>
+    <% end %>
+  </table>
 <% else %>
   <h4>the is no comment for this product </h4>
   <p>go to Home</p>
-
 <% end %>

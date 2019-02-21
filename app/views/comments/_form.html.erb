@@ -2,7 +2,7 @@
 
   <p>
     <%= form.collection_select :user_id, User.order(:first_name),:id,:first_name %>
- </p>
+  </p>
 
   <p>
     <%= form.label :comment %> <br>
@@ -10,7 +10,7 @@
   </p>
 
   <p>
-      <%= form.submit %>
+    <%= form.submit %>
   </p>
 
 <% end %>
