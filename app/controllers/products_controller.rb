@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
       @product.destroy
       redirect_to products_path
     else
-       redirect_to products_path, alert: "Access Denied"
+       redirect_to products_path, alert: "Access Denied, yuh cannot delete another user's product"
     end
   end
 

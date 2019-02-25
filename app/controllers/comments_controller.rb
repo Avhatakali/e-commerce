@@ -9,6 +9,9 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
     @product = @comment.product
+    user = @comment.user
+
+    redirect_to products_path, alert: "Access Denied" unless current_user == user
   end
 
   def create
@@ -37,8 +40,13 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @product = @comment.product
 
+    user = @comment.user
+    if current_user == user
     @comment.destroy
-    redirect_to product_path(@product)
+      redirect_to product_path(@product)
+    else
+      redirect_to products_path, alert: "Access Denied, yuh cannot delete another user's comment"
+    end
   end
 
   private
