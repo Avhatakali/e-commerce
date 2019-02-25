@@ -15,11 +15,13 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    user = @product.user
+
+    redirect_to products_path, alert: "Access Denied" unless current_user == user
   end
 
   def create
-    @user = current_user
-    @product = @user.products.create(product_params)
+    @product = current_user.products.create(product_params)
 
     if @product.save
       redirect_to products_path(@product)
@@ -40,9 +42,14 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    @product.destroy
 
-    redirect_to products_path
+    user = @product.user
+    if current_user == user
+      @product.destroy
+      redirect_to products_path
+    else
+       redirect_to products_path, alert: "Access Denied"
+    end
   end
 
   private
