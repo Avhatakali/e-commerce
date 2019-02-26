@@ -14,6 +14,9 @@
 
     <% @products.each do |product| %>
     <tr>
+      <td><%= form_with(model: @product, local: true) do |form| %>
+          <%= form.check_box :parchase %>
+      <% end %></td>
       <td><%= product.id %></td>
       <td><%= product.name %></td>
       <td><%= product.price %></td>
