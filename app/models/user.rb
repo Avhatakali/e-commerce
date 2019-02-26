@@ -8,4 +8,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
 
          :confirmable, :lockable
+
+  enum status: [:seller, :buyer]
 end

@@ -14,12 +14,8 @@
   </div>
 
   <div class="form-group">
-    <p>who are yuh ?</p>
-    <%= f.label :Seller %>
-    <%= f.radio_button :status, class: 'form-control' %>
-
-    <%= f.label :buyer %>
-    <%= f.radio_button :status, class: 'form-control' %>
+    <%= f.label :"who are yuh ?" %>
+    <%= f.select :status, User.statuses.keys %>
   </div>
 
   <div class="form-group">
