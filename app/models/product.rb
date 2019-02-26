@@ -7,4 +7,6 @@ class Product < ApplicationRecord
 
   validates :price, :quantity, presence: true,
     length: {minimum: 2 }
+
+    paginates_per 2
 end

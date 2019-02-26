@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    @product_pages = Product.order(:name).page params[:page]
   end
 
   def show

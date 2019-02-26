@@ -14,9 +14,11 @@
 
     <% @products.each do |product| %>
     <tr>
-      <td><%= form_with(model: @product, local: true) do |form| %>
-          <%= form.check_box :parchase %>
-      <% end %></td>
+      <% if user_signed_in? %>
+        <td><%= form_with(model: @product, local: true) do |form| %>
+          <%= form.check_box :parchase %> <% end %>
+        </td>
+      <% end %>
       <td><%= product.id %></td>
       <td><%= product.name %></td>
       <td><%= product.price %></td>
@@ -38,3 +40,5 @@
     <% end %>
   </table>
 <% end %>
+
+<%= paginate @product_pages %>
