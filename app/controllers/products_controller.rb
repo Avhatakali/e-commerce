@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @product_pages = Product.order(:name).page params[:page]
+    @user_login = current_user
   end
 
   def show
@@ -53,8 +54,21 @@ class ProductsController < ApplicationController
     end
   end
 
+  def purchase
+    @user = current_user
+    @product = Product.find(params[:id])
+    @product.quantity -= 1 unless @product.quantity == 0
+    @product.save
+    redirect_to products_path
+  end
+
+  def increase
+    @user = current_user
+    @product = Product.find(params[:id])
+  end
+
   private
     def product_params
-      params.require(:product).permit(:name, :price, :quantity)
+      params.require(:product).permit(:name, :price, :quantity, :purchase)
     end
 end

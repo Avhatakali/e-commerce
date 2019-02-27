@@ -1,5 +1,5 @@
 <% if @product.comments.present? %>
-  <h4><%= @product.name %></h4>
+  <h4><%= "#{@product.name} is out of stock" %></h4>
   <table>
     <tr>
       <th>Id</th>
@@ -24,3 +24,12 @@
   <h4>the is no comment for this product </h4>
   <p>go to Home</p>
 <% end %>
+
+<h4>Products bought</h4>
+<table>
+  <th>Name</th>
+  <th>Date</th>
+  <th>Price</th>
+
+  
+</table>

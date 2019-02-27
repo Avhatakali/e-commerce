@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_26_152100) do
+ActiveRecord::Schema.define(version: 2019_02_27_132533) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -29,7 +29,20 @@ ActiveRecord::Schema.define(version: 2019_02_26_152100) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "purchase", default: false
     t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "seller_id"
+    t.integer "buyer_id"
+    t.float "price"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_transactions_on_product_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

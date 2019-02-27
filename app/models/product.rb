@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   validates :name, presence: true,
     length: {minimum: 4 }
 
-  validates :price, :quantity, presence: true,
+  validates :price, presence: true,
     length: {minimum: 2 }
 
     paginates_per 2

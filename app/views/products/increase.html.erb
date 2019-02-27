@@ -1,0 +1,16 @@
+<%= form_with(model: @product, local: true) do |form| %>
+
+  <p>
+    <%= "#{@product.name}" %>
+  </p>
+
+  <p>
+    <%= form.label :quantity %><br>
+    <%= form.text_field :quantity %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>

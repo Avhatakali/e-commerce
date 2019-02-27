@@ -5,5 +5,12 @@ Rails.application.routes.draw do
   root 'products#index'
     resources:products do
       resources:comments
+      collection do
+        post '/:id/purchase', to: 'products#purchase', as: 'purchase'
+      end
+
+      collection do
+        get '/:id/increase', to: 'products#increase', as: 'increase'
+      end
     end
   end
