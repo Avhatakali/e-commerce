@@ -10,4 +10,5 @@ class User < ApplicationRecord
          :confirmable, :lockable
 
   enum status: [:seller, :buyer]
+
 end

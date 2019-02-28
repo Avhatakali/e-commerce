@@ -53,18 +53,19 @@
       <% end %>
 
       <td><%= link_to 'Show', product_path(product) %></td>
-      <td><%= link_to 'Comment', new_product_comment_path(product)  %></td>
 
       <% if user_signed_in? %>
         <% if @user_login.status == 'buyer' %>
           <% if product.quantity > 0 %>
             <td><%= button_to "#{product.name}", purchase_products_path(product)  %></td>
+            <td><%= link_to 'Comment', new_product_comment_path(product)  %></td>
           <% end %>
       <% end %>
     <% end %>
 
       <% if user_signed_in? %>
         <% if @user_login.status == 'seller' %>
+          <td><%= link_to 'Comment', new_product_comment_path(product)  %></td>
           <td><%= link_to 'Edit', edit_product_path(product)  %></td>
           <td><%= link_to 'Delete', product_path(product),
             method: :delete, data: {confirm: "do yuh really want to delete product ?"}  %></td>

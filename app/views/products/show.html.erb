@@ -25,11 +25,25 @@
   <p>go to Home</p>
 <% end %>
 
-<h4>Products bought</h4>
-<table>
-  <th>Name</th>
-  <th>Date</th>
-  <th>Price</th>
+<% if user_signed_in? %>
+  <h4>Products bought</h4>
+  <table>
+    <% if @user_login.status == 'seller' || @user_login.status == 'buyer' %>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>price</th>
+      <th>Date sold</th>
+    </tr>
 
-  
-</table>
+    <% @activities.each do |activity|%>
+    <tr>
+      <td><%= activity.trackable.id %></td>
+      <td><%= activity.trackable.name %></td>
+      <td><%= activity.trackable.price %></td>
+      <td><%= activity.created_at %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+<% end %>

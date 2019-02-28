@@ -8,6 +8,15 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @activities = PublicActivity::Activity.all
+    @user_login = current_user
+
+     #user = PublicActivity::Activity.owner_id
+     #if current_user == user
+     # @activities = PublicActivity::Activity.all
+     #else
+     #  redirect_to products_path, alert: "Access Denied !!!"
+     #end
   end
 
   def new
@@ -24,6 +33,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.create(product_params)
+    @product.create_activity key: 'product.new', owner: current_user
 
     if @product.save
       redirect_to products_path(@product)
@@ -50,7 +60,7 @@ class ProductsController < ApplicationController
       @product.destroy
       redirect_to products_path
     else
-       redirect_to products_path, alert: "Access Denied, yuh cannot delete another user's product"
+      redirect_to products_path, alert: "Access Denied, yuh cannot delete another user's product"
     end
   end
 
