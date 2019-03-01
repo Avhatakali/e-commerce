@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = current_user.products.create(product_params)
+    @product = current_user.products.create!(product_params)
     @product.create_activity key: 'product.new', owner: current_user
 
     if @product.save
@@ -79,6 +79,6 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:name, :price, :quantity, :purchase)
+      params.require(:product).permit(:name, :price, :quantity, :purchase, :avatar)
     end
 end

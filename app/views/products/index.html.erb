@@ -13,6 +13,7 @@
       <th>Name</th>
       <th>Price</th>
       <th>Quantity</th>
+      <th>Image</th>
     </tr>
 
     <% @products.each do |product| %>
@@ -35,6 +36,7 @@
           <% end %>
         <% end %>
       <% end %>
+      <td><%= image_tag product.avatar.url(:thumb) %></td>
 
     <% if user_signed_in? %>
       <% if @user_login.status == 'buyer' %>

@@ -7,6 +7,7 @@ gem 'devise'
 gem "letter_opener", :group => :development
 gem 'kaminari'
 gem 'public_activity'
+gem "paperclip", "~> 6.0.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
