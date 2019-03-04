@@ -38,9 +38,8 @@
 
     <% @activities.each do |activity|%>
     <tr>
-      <td><%= activity.trackable.id %></td>
+      <td><%= activity.id %></td>
       <td><%= activity.trackable.name %></td>
-      <td><%= activity.trackable.price %></td>
       <td><%= activity.created_at %></td>
       <% end %>
     </tr>
