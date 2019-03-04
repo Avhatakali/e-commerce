@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_01_084050) do
+ActiveRecord::Schema.define(version: 2019_03_04_123933) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -75,6 +75,19 @@ ActiveRecord::Schema.define(version: 2019_03_01_084050) do
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "structures", force: :cascade do |t|
+  end
+
+  create_table "track_transactions", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "user_id"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_track_transactions_on_product_id"
+    t.index ["user_id"], name: "index_track_transactions_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|

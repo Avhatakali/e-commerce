@@ -70,6 +70,9 @@ class ProductsController < ApplicationController
     @product.quantity -= 1 unless @product.quantity == 0
     @product.save
     redirect_to products_path
+
+
+    
   end
 
   def increase
