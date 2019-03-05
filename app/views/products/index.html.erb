@@ -55,13 +55,13 @@
       <% end %>
 
       <td><%= link_to 'Show', product_path(product) %></td>
-
+      <td><%= link_to 'Show purchases', show_users_path(product)  %></td>
+      
       <% if user_signed_in? %>
         <% if @user_login.status == 'buyer' %>
           <% if product.quantity > 0 %>
             <td><%= button_to "#{product.name}", purchase_products_path(product)  %></td>
             <td><%= link_to 'Comment', new_product_comment_path(product)  %></td>
-            <td><%= link_to 'Show purchases', show_users_path(product)  %></td>
           <% end %>
       <% end %>
     <% end %>

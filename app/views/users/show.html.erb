@@ -1,16 +1,41 @@
-<h4>products bought</h4>
-<table>
-  <tr>
-    <th>Price</th>
-    <th>Date</th>
-    <th>product name</th>
-  </tr>
-
-  <% @track_transactions.each do |track_transaction| %>
+<% if user_signed_in? %>
+  <% if @user_login.status == 'buyer' %>
+  <h4>products bought</h4>
+  <table>
     <tr>
-      <td><%= track_transaction.price %></td>
-      <td><%= track_transaction.date_helper %></td>
-      <td><%= find_product(track_transaction.product_id) %></td>
+      <th>Price</th>
+      <th>Date</th>
+      <th>product name</th>
     </tr>
+
+    <% @track1_transactions.each do |track_transaction| %>
+      <tr>
+        <td><%= track_transaction.price %></td>
+        <td><%= track_transaction.date_helper %></td>
+        <td><%= find_product(track_transaction.product_id) %></td>
+      </tr>
+    <% end %>
+  </table>
   <% end %>
-</table>
+<% end %>
+
+<% if user_signed_in? %>
+  <% if @user_login.status == 'seller' %>
+  <h4>products bought</h4>
+  <table>
+    <tr>
+      <th>Price</th>
+      <th>Date</th>
+      <th>product name</th>
+    </tr>
+
+    <% @track_transactions.each do |track_transaction| %>
+      <tr>
+        <td><%= track_transaction.price %></td>
+        <td><%= track_transaction.date_helper %></td>
+        <td><%= find_product(track_transaction.product_id) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% end %>
+<% end %>
