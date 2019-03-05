@@ -1,0 +1,16 @@
+<h4>products bought</h4>
+<table>
+  <tr>
+    <th>Price</th>
+    <th>Date</th>
+    <th>product name</th>
+  </tr>
+
+  <% @track_transactions.each do |track_transaction| %>
+    <tr>
+      <td><%= track_transaction.price %></td>
+      <td><%= track_transaction.date_helper %></td>
+      <td><%= find_product(track_transaction.product_id) %></td>
+    </tr>
+  <% end %>
+</table>

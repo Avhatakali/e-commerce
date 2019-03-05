@@ -13,4 +13,10 @@ Rails.application.routes.draw do
         get '/:id/increase', to: 'products#increase', as: 'increase'
       end
     end
+
+    resources:users do
+      collection do
+        get '/:id/show', to: 'users#show', as: 'show'
+      end
+    end
   end

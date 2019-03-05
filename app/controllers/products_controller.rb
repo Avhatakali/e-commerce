@@ -10,9 +10,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @user_login = current_user
 
-  # for everything he buyer bought
-  # @track_transactions = TrackTransaction.all
-
     @track_transactions = TrackTransaction.where(product_id: @product.id)
   end
 
@@ -66,9 +63,12 @@ class ProductsController < ApplicationController
     @product.quantity -= 1 unless @product.quantity == 0
     @product.save
 
-    @transaction = TrackTransaction.create(product_id: @product.id, seller_id: @product.user.id, buyer_id: current_user.id, price: @product.price)
-    redirect_to products_path
-
+    @track_transaction = TrackTransaction.create(product_id: @product.id, seller_id: @product.user.id, buyer_id: current_user.id, price: @product.price)
+    if @track_transaction.save
+      redirect_to products_path, alert: "Purchase Successful: #{@product.name}"
+    else
+      render 'show'
+    end
   end
 
   def increase

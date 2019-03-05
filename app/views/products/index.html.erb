@@ -20,7 +20,7 @@
     <tr>
       <% if user_signed_in? %>
         <td><%= form_with(model: @product, local: true) do |form| %>
-          <%= form.check_box :parchase %> <% end %>
+          <%= form.check_box :parchase %><% end %>
         </td>
       <% end %>
       <td><%= product.id %></td>
@@ -61,6 +61,7 @@
           <% if product.quantity > 0 %>
             <td><%= button_to "#{product.name}", purchase_products_path(product)  %></td>
             <td><%= link_to 'Comment', new_product_comment_path(product)  %></td>
+            <td><%= link_to 'Show purchases', show_users_path(product)  %></td>
           <% end %>
       <% end %>
     <% end %>

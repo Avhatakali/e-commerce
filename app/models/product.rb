@@ -19,4 +19,8 @@ class Product < ApplicationRecord
 
   paginates_per 2
 
+  def product_name
+    "#{name}"
+  end
+
 end

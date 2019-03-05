@@ -26,9 +26,10 @@
 <% end %>
 
 <% if user_signed_in? %>
+  <% if @user_login.status == 'seller' %>
   <h4>Products bought</h4>
   <table>
-    <% if @user_login.status == 'seller' || @user_login.status == 'buyer' %>
+
     <tr>
       <th>buyer name</th>
       <th>seller name</th>
