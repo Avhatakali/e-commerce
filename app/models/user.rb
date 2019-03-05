@@ -12,4 +12,8 @@ class User < ApplicationRecord
 
   enum status: [:seller, :buyer]
 
+  def full_name
+    "#{first_name} #{second_name}"
+  end
+
 end

@@ -8,15 +8,12 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @activities = PublicActivity::Activity.all
     @user_login = current_user
 
-     #user = PublicActivity::Activity.owner_id
-     #if current_user == user
-     # @activities = PublicActivity::Activity.all
-     #else
-     #  redirect_to products_path, alert: "Access Denied !!!"
-     #end
+  # for everything he buyer bought
+  # @track_transactions = TrackTransaction.all
+
+    @track_transactions = TrackTransaction.where(product_id: @product.id)
   end
 
   def new
@@ -68,7 +65,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.quantity -= 1 unless @product.quantity == 0
     @product.save
+
+    @transaction = TrackTransaction.create(product_id: @product.id, seller_id: @product.user.id, buyer_id: current_user.id, price: @product.price)
     redirect_to products_path
+
   end
 
   def increase

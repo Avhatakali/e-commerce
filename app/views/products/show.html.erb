@@ -30,17 +30,18 @@
   <table>
     <% if @user_login.status == 'seller' || @user_login.status == 'buyer' %>
     <tr>
-      <th>id</th>
-      <th>name</th>
+      <th>buyer name</th>
+      <th>seller name</th>
       <th>price</th>
       <th>Date sold</th>
     </tr>
 
-    <% @activities.each do |activity|%>
+    <% @track_transactions.each do |track_transaction|%>
     <tr>
-      <td><%= activity.id %></td>
-      <td><%= activity.trackable.name %></td>
-      <td><%= activity.created_at %></td>
+      <td><%= find_user(track_transaction.buyer_id) %></td>
+      <td><%= find_user(track_transaction.seller_id) %></td>
+      <td><%= track_transaction.price %></td>
+      <td><%= track_transaction.date_helper %></td>
       <% end %>
     </tr>
     <% end %>
