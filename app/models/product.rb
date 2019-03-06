@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   has_one_attached :image
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   validates :name, presence: true,
